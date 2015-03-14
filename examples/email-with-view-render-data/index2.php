@@ -4,6 +4,7 @@ require_once('../../autoload.php');
 
 use SunMailer\Mailer;
 use SunMailer\View;
+use SunMailer\MailerException;
 
 $email      =   'iftekhersunny@gmail.com';
 $name       =   'Iftekher Sunny';
@@ -18,7 +19,7 @@ $data       =   [
                 ];
 
 //'view-directory'    => 'SunMailer/examples/email-with-view-render-data/'
-$body       =   View::render('email.test1', $data);
+$body       =   View::render('email.test2', $data);
 
 try
 {

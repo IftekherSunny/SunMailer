@@ -4,6 +4,7 @@ require_once('../../autoload.php');
 
 // namespace
 use SunMailer\Mailer;
+use SunMailer\MailerException;
 
 $email      =   'iftekhersunny@gmail.com';
 $name       =   'Iftekher Sunny';
