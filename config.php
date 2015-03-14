@@ -40,7 +40,12 @@ return [
             /*
              *  Log Email
              */
-            'log'       => false
+            'log'       => true,
+
+            /**
+             * Email View Path
+             */
+            'view-directory'    => ''
 		]
 
 	];

@@ -3,6 +3,8 @@
 interface ViewInterface {
 
     /**
+     * To render html view
+     *
      * @param string $viewPath
      * @param array  $data
      *

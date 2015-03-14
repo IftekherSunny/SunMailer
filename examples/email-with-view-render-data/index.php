@@ -1,0 +1,26 @@
+<?php
+// SunMailer autoload file
+require_once('../../autoload.php');
+
+// namespace
+use SunMailer\Mailer;
+use SunMailer\View;
+
+$email      =   'iftekhersunny@gmail.com';
+$name       =   'Iftekher Sunny';
+$subject    =   'Test Mail';
+
+$data       =   [ 'user'  =>  'Iftekher Sunny' ];
+
+//'view-directory'    => 'SunMailer/examples/email-with-view-render-data/'
+$body       =   View::render('email.test', $data);
+
+if(Mailer::send($email, $name, $subject, $body))
+{
+    echo 'Send email successfully';
+}
+else
+{
+    echo  'Oops!!! Something goes to wrong';
+}
+

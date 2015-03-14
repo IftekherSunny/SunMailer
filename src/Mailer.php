@@ -27,13 +27,13 @@ class Mailer Implements MailerInterface{
 
     function __construct()
     {
-        $this->config = require_once(Helper::config().'');
+        $this->config = require(Helper::config().'');
 
         $this->mailer = new PHPMailer;
 
-        $this->dirLogFile = dirname(realpath(__DIR__ . '/..')) . '\logs\SunMailer';
+        $this->dirLogFile = $this->getLogDirectory();
 
-        $this->logFileName = $this->dirLogFile.'\log.html';
+        $this->logFileName = $this->dirLogFile.'/log.html';
     }
 
     /**
@@ -122,7 +122,7 @@ class Mailer Implements MailerInterface{
      */
     protected function logEmail($body)
     {
-        if ( ! is_dir($this->dirLogFile)) mkdir($this->dirLogFile);
+        if ( ! is_dir($this->dirLogFile)) mkdir($this->dirLogFile, 0755, true);
 
         file_put_contents($this->logFileName, $body);
 
@@ -142,13 +142,21 @@ class Mailer Implements MailerInterface{
      */
     protected function deleteLogDir()
     {
-        $dirLog = Helper::logPath();
+        $dirLog = Helper::log_path();
 
         if(scandir($dirLog))
         {
             array_map('unlink', glob($dirLog . '/*.html') );
         }
         rmdir($dirLog);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getLogDirectory()
+    {
+        return Helper::log_path();
     }
 
 }

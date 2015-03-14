@@ -28,15 +28,78 @@ class Helper {
     }
 
     /**
-     * To get SunMailer log directory path
+     * To get root directory path
+     *
+     * @return mixed
+     */
+    public static function root_path()
+    {
+        return $_SERVER['DOCUMENT_ROOT'];
+    }
+
+    /**
+     * To get view directory path
      *
      * @return string
      */
-    public static function logPath()
+    public static function view_path()
     {
-        $realpath = realpath(__DIR__.'/../..');
-        $logPath = (str_replace('\\','/',$realpath)).'/logs/SunMailer';
+        $config =   require(self::config().'');
+        $viewDir = $config['mail']['view-directory'];
+
+        if( $viewDir === '' )
+        {
+            $viewDir = self::root_path(). '/';
+        }
+        else
+        {
+            $viewDir = self::root_path(). '/' . $viewDir;
+        }
+
+        return $viewDir;
+    }
+
+    /**
+     * To get log directory path
+     *
+     * @return string
+     */
+    public static function log_path()
+    {
+        $config =   require(self::config().'');
+        $viewDir = $config['mail']['view-directory'];
+
+        if( $viewDir === '' )
+        {
+            $logPath = Helper::root_path(). '/SunMailer/log';
+        }
+        else
+        {
+            $logPath = dirname(Helper::view_path()). '/SunMailer/log';
+        }
 
         return $logPath;
+    }
+
+    /**
+     * To get temp directory path
+     *
+     * @return string
+     */
+    public static function temp_path()
+    {
+        $config =   require(self::config().'');
+        $viewDir = $config['mail']['view-directory'];
+
+        if( $viewDir === '' )
+        {
+            $tempPath = Helper::root_path(). '/SunMailer/temp';
+        }
+        else
+        {
+            $tempPath = dirname(Helper::view_path()). '/SunMailer/temp';
+        }
+
+        return $tempPath;
     }
 }

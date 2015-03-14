@@ -4,6 +4,18 @@
 class View implements ViewInterface{
 
     /**
+     * @var mixed config.php
+     */
+    protected $config;
+
+    function __construct()
+    {
+        $this->config =   require(Helper::config().'');
+    }
+
+    /**
+     * To render html view
+     *
      * @param string $view
      * @param array  $data
      *
@@ -49,8 +61,7 @@ class View implements ViewInterface{
      */
     protected function getViewPath($view)
     {
-        $view = dirname(realpath(__DIR__ . '/..')) . '\\' . $view ;
-        $view = str_replace('\\', '/', $view);
+        $view = $this->getViewDirectory($view);
         $view = str_replace('.', '/', $view);
         $view =  $view. '.php';
         return $view;
@@ -109,11 +120,11 @@ class View implements ViewInterface{
                 {
                     if(is_array($data[$key]))
                     {
-                        $view = str_replace( $match,  $this->arrayToString($data[$key]), $view);
+                        $view = preg_replace( '/\b'. $match .'\b/i',  $this->arrayToString($data[$key]), $view);
                     }
                     else
                     {
-                        $view = str_replace( $match,  $data[$key], $view);
+                        $view = preg_replace('/\b'. $match .'\b/i',  $data[$key], $view);
                     }
                 }
 
@@ -132,7 +143,7 @@ class View implements ViewInterface{
      */
     protected function putNewView($dirTemp, $tempView, $newView)
     {
-        if ( ! is_dir($dirTemp)) mkdir($dirTemp);
+        if ( ! is_dir($dirTemp)) mkdir($dirTemp, 0755, true);
 
         file_put_contents($tempView, $newView);
     }
@@ -157,7 +168,7 @@ class View implements ViewInterface{
      */
     protected function getTempDirName()
     {
-        return dirname(realpath(__DIR__ )) . '\.tmp';
+        return Helper::temp_path();
     }
 
     /**
@@ -167,7 +178,7 @@ class View implements ViewInterface{
      */
     protected function getTempViewName($dirTemp)
     {
-        return $dirTemp . '\\' . rand() . '.php';
+        return $dirTemp . '/' . rand() . '.php';
     }
 
     /**
@@ -192,14 +203,27 @@ class View implements ViewInterface{
     {
         $dataString = '[ ';
 
-        foreach($dataArray as $data)
+        foreach($dataArray as $key => $value)
         {
-            $dataString .= '\''. $data .'\',';
+            $dataString .= '\''. $key .'\'';
+            $dataString .=  '=>';
+            $dataString .= '\''. $value .'\',';
         }
 
         $dataString = rtrim($dataString, ',') . ' ]';
 
         return $dataString;
+    }
+
+    /**
+     * @param $view
+     *
+     * @return string
+     */
+    protected function getViewDirectory($view)
+    {
+        $viewDir = Helper::view_path() . $view;
+        return $viewDir;
     }
 
 }
