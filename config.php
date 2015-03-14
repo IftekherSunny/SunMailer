@@ -27,7 +27,7 @@ return [
 
 			],
 
-			/*
+			/*;2
 			 * reply email address & name			 *
 			 */
 			'reply' => [
@@ -40,7 +40,7 @@ return [
             /*
              *  Log Email
              */
-            'log'       => true,
+            'log'       => false,
 
             /**
              * Email View Path

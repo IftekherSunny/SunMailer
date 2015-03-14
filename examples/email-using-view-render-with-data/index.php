@@ -11,8 +11,10 @@ $email      =   'iftekhersunny@gmail.com';
 $name       =   'Iftekher Sunny';
 $subject    =   'Test Mail';
 
-//'view-directory'    => 'SunMailer/examples/email-with-view-render/'
-$body       =   View::render('email.test');
+$data       =   [ 'user'  =>  'Iftekher Sunny' ];
+
+//'view-directory'    => 'SunMailer/examples/email-using-view-render-with-data/'
+$body       =   View::render('email.test', $data);
 
 try
 {

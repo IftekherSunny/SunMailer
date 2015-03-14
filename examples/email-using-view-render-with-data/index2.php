@@ -18,7 +18,7 @@ $data       =   [
                     ]
                 ];
 
-//'view-directory'    => 'SunMailer/examples/email-with-view-render-data/'
+//'view-directory'    => 'SunMailer/examples/email-using-view-render-with-data/'
 $body       =   View::render('email.test2', $data);
 
 try
