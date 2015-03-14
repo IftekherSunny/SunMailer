@@ -20,12 +20,15 @@ $data       =   [
 //'view-directory'    => 'SunMailer/examples/email-with-view-render-data/'
 $body       =   View::render('email.test1', $data);
 
-if(Mailer::send($email, $name, $subject, $body))
+try
 {
-    echo 'Send email successfully';
+    if(Mailer::send($email, $name, $subject, $body))
+    {
+        echo 'Email has been sent successfully.';
+    }
 }
-else
+catch (MailerException $e)
 {
-    echo  'Oops!!! Something goes to wrong';
+    echo  'Oops!!! Something goes to wrong. '. $e->getMessage();
 }
 

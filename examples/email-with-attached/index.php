@@ -11,12 +11,14 @@ $subject    =   'Test Mail';
 $body       =   'Test mail body';
 $attached   =   'images/sunmailer.jpg';
 
-if(Mailer::send($email, $name, $subject, $body, $attached))
+try
 {
-    echo 'Send email successfully';
+    if(Mailer::send($email, $name, $subject, $body, $attached))
+    {
+        echo 'Email has been sent successfully.';
+    }
 }
-else
+catch (MailerException $e)
 {
-    echo  'Oops!!! Something goes to wrong';
+    echo  'Oops!!! Something goes to wrong. '. $e->getMessage();
 }
-

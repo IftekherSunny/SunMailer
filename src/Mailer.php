@@ -105,10 +105,15 @@ class Mailer Implements MailerInterface{
          */
         if ( $this->config['mail']['log'] !== true)
         {
-            if(!$this->mailer->send()) {
-                return false;
-            } else {
-                return true;
+            try
+            {
+                if( ! $this->mailer->send()) throw new MailerException($this->mailer->ErrorInfo);
+
+                else return true;
+            }
+            catch(\phpmailerException  $e)
+            {
+                throw new MailerException($e->errorMessage());
             }
         }
     }

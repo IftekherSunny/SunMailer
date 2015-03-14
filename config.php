@@ -40,7 +40,7 @@ return [
             /*
              *  Log Email
              */
-            'log'       => true,
+            'log'       => false,
 
             /**
              * Email View Path
