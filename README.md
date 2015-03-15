@@ -6,7 +6,7 @@ SunMailer helps you to send email easily.
  
 Just copy SunMailer folder somewhere into your project directory. Then include SunMailer autoloader.        
  
-```
+```php
 require_once('/path/to/SunMailer/autoload.php');
 ```
 
@@ -51,7 +51,7 @@ If you want to test your email locally just set log  to true. ( Default set to f
    
 #Send basic email
  
-```
+```php
 // namespace
 use SunMailer\Mailer;
 use SunMailer\View;
@@ -79,7 +79,7 @@ catch (MailerException $e)
 
 #Email with attached file
  
-```
+```php
 $attached   =   'images/sunmailer.jpg';
  
 if(Mailer::send($email, $name, $subject, $body, $attached))
@@ -93,12 +93,12 @@ if(Mailer::send($email, $name, $subject, $body, $attached))
  
 render() method of the View class helps you to render HTML outlook.
  
-```
+```php
 View::render('to.path.test');
 ```
 For pointing your file path use ( . ) or ( / ) , and add your file name without (.php) extension.
  
-```
+```php
 $body = View::render('email.test');
  
 if(Mailer::send($email, $name, $subject, $body))
@@ -109,26 +109,26 @@ if(Mailer::send($email, $name, $subject, $body))
  
 You can also pass any value to the view template by the second parameter of the render() method (Default set to null).
  
-```
+```php
 $data  = [ 'name'  =>  'Test Name' ];
 View::render('email.test', $data);
 ```
  
 You need to add a placeholder ( added @ at the begining of your variable name ) for getting this data into view template. For the above an example is given below.
  
-```
+```php
 @name
 ```
  
 #To clean log directory
  
-```
+```php
 Mailer::logClean();
 ```
 
 #Some of helper functions
  
-```
+```php
 // to get configuration file
 Helper::config();
 
