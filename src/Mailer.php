@@ -107,6 +107,8 @@ class Mailer Implements MailerInterface{
         {
             try
             {
+                set_time_limit(0);
+
                 if( ! $this->mailer->send()) throw new MailerException($this->mailer->ErrorInfo);
 
                 else return true;

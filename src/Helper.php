@@ -9,10 +9,15 @@ class Helper {
      */
     public static function config()
     {
-        $realpath = realpath(__DIR__.'/..');
-        $config = (str_replace('\\','/',$realpath)).'/config.php';
+        $publishedConfigRealpath = realpath(__DIR__.'/../../..');
+        $publishedConfig = (str_replace('\\','/', $publishedConfigRealpath )).'/config/SunMailer.php';
 
-        return $config;
+        if( file_exists($publishedConfig) ) return $publishedConfig;
+
+        $defaultRealpath = realpath(__DIR__.'/..');
+        $defaultConfig = (str_replace('\\','/', $defaultRealpath )).'/config.php';
+
+        return $defaultConfig;
     }
 
     /**
@@ -71,11 +76,11 @@ class Helper {
 
         if( $viewDir === '' )
         {
-            $logPath = Helper::root_path(). '/SunMailer/log';
+            $logPath = Helper::root_path(). '/logs/SunMailer';
         }
         else
         {
-            $logPath = dirname(Helper::view_path()). '/SunMailer/log';
+            $logPath = Helper::view_path(). 'logs/SunMailer';
         }
 
         return $logPath;
@@ -93,11 +98,11 @@ class Helper {
 
         if( $viewDir === '' )
         {
-            $tempPath = Helper::root_path(). '/SunMailer/temp';
+            $tempPath = Helper::root_path(). '/logs/SunMailer/temp';
         }
         else
         {
-            $tempPath = dirname(Helper::view_path()). '/SunMailer/temp';
+            $tempPath = Helper::view_path(). '/logs/SunMailer/temp';
         }
 
         return $tempPath;

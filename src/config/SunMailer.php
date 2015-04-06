@@ -17,7 +17,7 @@ return [
         'username'      => 'example@gmail.com',
         'password'	    => 'secret',
 
-        /**
+        /*
          *  Sender email address & name			 *
          */
         'from' => [
@@ -27,7 +27,7 @@ return [
 
         ],
 
-        /**
+        /*;2
          * reply email address & name			 *
          */
         'reply' => [
@@ -37,15 +37,15 @@ return [
 
         ],
 
-        /**
+        /*
          *  Log Email
          */
-        'log'       => false,
+        'log'       => true,
 
         /**
          * Email View Path
          */
-        'view-directory'    => ''
+        'view-directory'    => 'email/'
     ]
 
 ];
