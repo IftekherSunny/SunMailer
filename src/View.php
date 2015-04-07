@@ -120,11 +120,11 @@ class View implements ViewInterface{
                 {
                     if(is_array($data[$key]))
                     {
-                        $view = preg_replace( '/\b'. $match .'\b/i',  $this->arrayToString($data[$key]), $view);
+                        $view = preg_replace( '/'. $match .'/',  $this->arrayToString($data[$key]), $view);
                     }
                     else
                     {
-                        $view = preg_replace('/\b'. $match .'\b/i',  $data[$key], $view);
+                        $view = preg_replace('/'. $match .'/',  $data[$key], $view);
                     }
                 }
 
