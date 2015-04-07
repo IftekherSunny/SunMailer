@@ -9,7 +9,7 @@ class Helper {
      */
     public static function config()
     {
-        $publishedConfigRealpath = realpath(__DIR__.'/../../..');
+        $publishedConfigRealpath = realpath(__DIR__.'/../../../..');
         $publishedConfig = (str_replace('\\','/', $publishedConfigRealpath )).'/config/SunMailer.php';
 
         if( file_exists($publishedConfig) ) return $publishedConfig;
