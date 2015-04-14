@@ -95,45 +95,7 @@ class View implements ViewInterface{
      */
     protected function generateNewView(array $data = null, $view)
     {
-        preg_match_all('/@+[A-Za-z0-9_-]+/', $view, $matches);
-
-        $dataIsNull = is_null($data);
-
-        if ( ! $dataIsNull)
-        {
-            $dataKeys = array_keys($data);
-        }
-
-        foreach($matches[0] as $match)
-        {
-            if( (substr($match, 0,2) == '@@') )
-            {
-                $view =  str_replace( $match, substr($match, 1), $view);
-            }
-            else
-            {
-                if ($dataIsNull) throw new MailerException('Variable [ '. substr($match, 1) . ' ] is undefined.');
-
-                $key  = str_replace('@', '', $match );
-
-                if (in_array($key, $dataKeys))
-                {
-                    if(is_array($data[$key]))
-                    {
-                        $view = preg_replace( '/'. $match .'/',  $this->arrayToString($data[$key]), $view);
-                    }
-                    else
-                    {
-                        $view = preg_replace('/'. $match .'/',  $data[$key], $view);
-                    }
-                }
-
-                else throw new MailerException('Variable [ ' . $key . ' ] is undefined');
-
-            }
-        }
-
-        return $view;
+        return TemplateCompiler::compile($view, $data);
     }
 
     /**
@@ -190,29 +152,6 @@ class View implements ViewInterface{
     protected function findInPaths($view, $viewPath)
     {
         if ( ! file_exists($viewPath)) throw new MailerException("View [$view] not found.", E_USER_ERROR);
-    }
-
-    /**
-     * To generate array to string
-     *
-     * @param array $dataArray
-     *
-     * @return string
-     */
-    protected function arrayToString(array $dataArray)
-    {
-        $dataString = '[ ';
-
-        foreach($dataArray as $key => $value)
-        {
-            $dataString .= '\''. $key .'\'';
-            $dataString .=  '=>';
-            $dataString .= '\''. $value .'\',';
-        }
-
-        $dataString = rtrim($dataString, ',') . ' ]';
-
-        return $dataString;
     }
 
     /**

@@ -149,7 +149,7 @@ class Mailer Implements MailerInterface{
      */
     protected function deleteLogDir()
     {
-        $dirLog = Helper::log_path();
+        $dirLog = $this->getLogDirectory();
 
         if(scandir($dirLog))
         {

@@ -102,7 +102,7 @@ class Helper {
         }
         else
         {
-            $tempPath = Helper::view_path(). '/logs/SunMailer/temp';
+            $tempPath = Helper::view_path(). 'logs/SunMailer/temp';
         }
 
         return $tempPath;
