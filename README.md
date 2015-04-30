@@ -1,6 +1,4 @@
-#SunMailer
-
-[![Build Status](https://travis-ci.org/IftekherSunny/SunMailer.svg?branch=master)](https://travis-ci.org/IftekherSunny/SunMailer)
+#SunMailer  [![Build Status](https://travis-ci.org/IftekherSunny/SunMailer.svg?branch=master)](https://travis-ci.org/IftekherSunny/SunMailer)
   
 SunMailer helps you to send email easily.
 
