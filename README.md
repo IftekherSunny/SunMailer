@@ -1,8 +1,11 @@
-#SunMailer  [![Build Status](https://travis-ci.org/IftekherSunny/SunMailer.svg?branch=master)](https://travis-ci.org/IftekherSunny/SunMailer)
+## SunMailer  
+
+[![Build Status](https://travis-ci.org/IftekherSunny/SunMailer.svg?branch=master)](https://travis-ci.org/IftekherSunny/SunMailer)
+[![Latest Stable Version](https://poser.pugx.org/sun/sunmailer/v/stable)](https://packagist.org/packages/sun/sunmailer) [![Total Downloads](https://poser.pugx.org/sun/sunmailer/downloads)](https://packagist.org/packages/sun/sunmailer) [![Latest Unstable Version](https://poser.pugx.org/sun/sunmailer/v/unstable)](https://packagist.org/packages/sun/sunmailer) [![License](https://poser.pugx.org/sun/sunmailer/license)](https://packagist.org/packages/sun/sunmailer)
   
 SunMailer helps you to send email easily.
 
-#Installation Process
+## Installation Process
  
 Just copy SunMailer folder somewhere into your project directory. Then include SunMailer autoloader.        
  
@@ -10,7 +13,7 @@ Just copy SunMailer folder somewhere into your project directory. Then include S
 require_once('/path/to/SunMailer/autoload.php');
 ```
 
-#Configuration
+## Configuration
 
 Open config.php file located at SunMailer/config.php then,
 
@@ -49,7 +52,7 @@ If you want to test your email locally just set log  to true. ( Default set to f
 ```
    
    
-#Send basic email
+## Send basic email
  
 ```php
 // namespace
@@ -77,7 +80,7 @@ catch (MailerException $e)
 }
 ```
 
-#Email with attached file
+## Email with attached file
  
 ```php
 $attached   =   'images/sunmailer.jpg';
@@ -89,7 +92,7 @@ if(Mailer::send($email, $name, $subject, $body, $attached))
  
 ```
  
-#Send email using view render
+## Send email using view render
  
 render() method of the View class helps you to render HTML outlook.
  
@@ -120,13 +123,13 @@ You need to add a placeholder ( added @ at the begining of your variable name ) 
 @name
 ```
  
-#To clean log directory
+## To clean log directory
  
 ```php
 Mailer::logClean();
 ```
 
-#Some of helper functions
+## Some of helper functions
  
 ```php
 // to get configuration file
@@ -142,5 +145,5 @@ Helper::log_path();
 Helper::temp_path();
 ```
  
-#License
+## License
 This package is licensed under the [MIT License](https://github.com/iftekhersunny/SunMailer/blob/master/LICENSE)
