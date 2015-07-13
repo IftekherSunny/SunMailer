@@ -10,13 +10,13 @@ SunMailer helps you to send email easily.
 Just copy SunMailer folder somewhere into your project directory. Then include SunMailer autoloader.        
  
 ```php
-    require_once('/path/to/SunMailer/autoload.php');
+  require_once('/path/to/SunMailer/autoload.php');
 ```
 
 SunMailer is also available via Composer/Packagist.
 
 ```php
-    composer require sun/sunmailer
+  composer require sun/sunmailer
 ```
 
 ## Configuration
