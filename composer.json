@@ -1,6 +1,7 @@
 {
   "name": "sun/sunmailer",
   "description": "SunMailer helps you to send email easily.",
+  "keywords": ["php", "mail", "mailer", "phpmailer", "php mailer", "email", "laravel"],
   "license": "MIT",
   "authors": [
       {
