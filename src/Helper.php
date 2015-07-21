@@ -1,6 +1,9 @@
-<?php namespace SunMailer;
+<?php
 
-class Helper {
+namespace SunMailer;
+
+class Helper
+{
 
     /**
      * To get config file path
@@ -9,13 +12,22 @@ class Helper {
      */
     public static function config()
     {
-        $publishedConfigRealpath = realpath(__DIR__.'/../../../..');
-        $publishedConfig = (str_replace('\\','/', $publishedConfigRealpath )).'/config/SunMailer.php';
+        $publishedConfigRealpath = realpath(__DIR__ . '/../../../..');
+        $publishedConfig = (str_replace('\\', '/', $publishedConfigRealpath)) . '/config/SunMailer.php';
 
-        if( file_exists($publishedConfig) ) return $publishedConfig;
+        if (file_exists($publishedConfig)) {
+            return $publishedConfig;
+        }
 
-        $defaultRealpath = realpath(__DIR__.'/..');
-        $defaultConfig = (str_replace('\\','/', $defaultRealpath )).'/config.php';
+        $planetPublishedConfigRealpath = realpath(__DIR__ . '/../../../..');
+        $planetPublishedConfig = (str_replace('\\', '/', $planetPublishedConfigRealpath)) . '/config/mail.php';
+
+        if (file_exists($planetPublishedConfig)) {
+            return $planetPublishedConfig;
+        }
+
+        $defaultRealpath = realpath(__DIR__ . '/..');
+        $defaultConfig = (str_replace('\\', '/', $defaultRealpath)) . '/config.php';
 
         return $defaultConfig;
     }
@@ -29,7 +41,7 @@ class Helper {
      */
     public static function pathGenerate($dirTemp)
     {
-        return (str_replace('\\','/',$dirTemp));
+        return (str_replace('\\', '/', $dirTemp));
     }
 
     /**
@@ -49,16 +61,13 @@ class Helper {
      */
     public static function view_path()
     {
-        $config =   require(self::config().'');
+        $config = require self::config() . '';
         $viewDir = $config['mail']['view-directory'];
 
-        if( $viewDir === '' )
-        {
-            $viewDir = self::root_path(). '/';
-        }
-        else
-        {
-            $viewDir = self::root_path(). '/' . $viewDir;
+        if ($viewDir === '') {
+            $viewDir = self::root_path() . '/';
+        } else {
+            $viewDir = self::root_path() . '/' . $viewDir;
         }
 
         return $viewDir;
@@ -71,16 +80,13 @@ class Helper {
      */
     public static function log_path()
     {
-        $config =   require(self::config().'');
+        $config = require self::config() . '';
         $viewDir = $config['mail']['view-directory'];
 
-        if( $viewDir === '' )
-        {
-            $logPath = Helper::root_path(). '/logs/SunMailer';
-        }
-        else
-        {
-            $logPath = Helper::view_path(). 'logs/SunMailer';
+        if ($viewDir === '') {
+            $logPath = Helper::root_path() . '/logs/SunMailer';
+        } else {
+            $logPath = Helper::view_path() . 'logs/SunMailer';
         }
 
         return $logPath;
@@ -93,16 +99,13 @@ class Helper {
      */
     public static function temp_path()
     {
-        $config =   require(self::config().'');
+        $config = require self::config() . '';
         $viewDir = $config['mail']['view-directory'];
 
-        if( $viewDir === '' )
-        {
-            $tempPath = Helper::root_path(). '/logs/SunMailer/temp';
-        }
-        else
-        {
-            $tempPath = Helper::view_path(). 'logs/SunMailer/temp';
+        if ($viewDir === '') {
+            $tempPath = Helper::root_path() . '/logs/SunMailer/temp';
+        } else {
+            $tempPath = Helper::view_path() . 'logs/SunMailer/temp';
         }
 
         return $tempPath;
