@@ -15,7 +15,7 @@ Just copy SunMailer folder somewhere into your project directory. Then include S
 
 SunMailer is also available via Composer/Packagist.
 
-```php
+```
   composer require sun/sunmailer
 ```
 
