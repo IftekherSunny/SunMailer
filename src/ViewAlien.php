@@ -11,6 +11,6 @@ class ViewAlien extends \Sun\Alien
      */
     public static function registerAlien()
     {
-        return new View();
+        return 'SunMailer\View';
     }
 }
